@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  
+  database:
+    image: mysql
+    container_name: next-inventory
+
+    environment:
+      MYSQL_DATABASE: "inventory"
+      MYSQL_USER: "admin"
+      MYSQL_PASSWORD: "password"
+      MYSQL_ROOT_PASSWORD: "password"
+
+    ports:
+      - 3307:3306
+
+    volumes:
+      - ./mysql:/var/lib/mysql
+
