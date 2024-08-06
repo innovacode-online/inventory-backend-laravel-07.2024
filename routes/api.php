@@ -2,8 +2,7 @@
 
 use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\ProductController;
-// use App\Http\Controllers\ProductController;
-// use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Sale\SaleController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -14,3 +13,6 @@ Route::delete("/categories/{id}", [CategoryController::class, "destroy"]);
 Route::patch("/categories/{id}", [CategoryController::class, "update"]);
 
 Route::apiResource("products", ProductController::class);
+Route::apiResource("sales", SaleController::class)
+    ->only(["index", "store", "show"]);
+    // ->except(["destroy", "update"]);

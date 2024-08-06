@@ -32,7 +32,7 @@ class ProductController extends Controller
 
         return response()->json([
             "message" => "Producto creado con exito",
-            new ProductResource($product),
+            "product" => new ProductResource($product),
         ]);
     }
 
