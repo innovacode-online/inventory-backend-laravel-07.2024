@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\StoreCategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
+use App\Http\Resources\Category\CategoryCollection;
+use App\Http\Resources\Category\CategoryResource;
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -14,11 +16,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(10);
 
-        return response()->json([
-            "categories" => $categories
-        ]);
+        return new CategoryCollection($categories);
     }
 
     /**
@@ -34,7 +34,7 @@ class CategoryController extends Controller
 
         return response()->json([
             "message" => "Categoria creada con exito",
-            "category" => $category
+            "category" => new CategoryResource($category)
         ]);
     }
 
@@ -54,9 +54,7 @@ class CategoryController extends Controller
             ], 404);
         }
 
-        return response()->json([
-            "category" => $category[0]
-        ]);
+        return new CategoryResource($category[0]);
     }
 
     /**
@@ -81,7 +79,7 @@ class CategoryController extends Controller
 
         return response()->json([
             "message" => "Categoria actualizad con exito",
-            "category" => $category
+            "category" => new CategoryResource($category)
         ]);
 
     }
