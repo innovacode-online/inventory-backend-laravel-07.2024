@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(10);
+        $categories = Category::orderBy("created_at", "desc")->paginate(5);
 
         return new CategoryCollection($categories);
     }
@@ -78,7 +78,7 @@ class CategoryController extends Controller
         $category->update( $request->all() );
 
         return response()->json([
-            "message" => "Categoria actualizad con exito",
+            "message" => "Categoria actualizada con exito",
             "category" => new CategoryResource($category)
         ]);
 
@@ -114,6 +114,6 @@ class CategoryController extends Controller
 
         $text = preg_replace('/_+/', '-', $text);
 
-        return $text;
+        return $text; 
     }
 }
