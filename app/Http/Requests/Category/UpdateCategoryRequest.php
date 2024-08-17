@@ -22,7 +22,7 @@ class UpdateCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "string|unique:categories,name",
+            "name" => "string",
             "description" => "string"
         ];
     }
@@ -30,7 +30,6 @@ class UpdateCategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            "name.unique" => "El nombre ya esta registrado",
             "name.string" => "El nombre debe ser un texto",
             "description.string" => "La descripcion debe ser un texto",
         ];
