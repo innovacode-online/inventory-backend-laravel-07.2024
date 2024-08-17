@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post("/auth/login", [AuthController::class, "login"]);
 
-// Route::middleware(["auth:sanctum", "role.admin"])->group(function () {
+Route::middleware(["auth:sanctum", "role.admin"])->group(function () {
 
     Route::apiResource("categories", CategoryController::class);
 
@@ -39,4 +39,4 @@ Route::post("/auth/login", [AuthController::class, "login"]);
         Route::post('/auth/logout', 'logout');
         Route::get('/auth/checkToken', 'checkToken');
     });
-// });
+});
